@@ -1,0 +1,1110 @@
+/* Reset default margins and ensure full height */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: auto; /* Allow scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Home page background (index.html) */
+body.home-page {
+    background: #1a1a1a; /* Fallback for video background */
+}
+
+/* Dashboard page background (dashboard.html) */
+body.dashboard-page {
+    background: #2a2356; /* Dark blue-purple */
+}
+
+/* Product page background (titangrip-arms.html, etc.) */
+body.product-page {
+    background: #2a2356; /* Match dashboard background */
+}
+
+/* Header for index page (video background) */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+/* New header for dashboard and product pages */
+.new-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 20px 20px; /* Adjusted padding: keep left, reduce right */
+    background: #2a2a2a; /* Dark background for contrast */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding doesn't increase width */
+    z-index: 10;
+}
+
+/* Fixed Header */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #2a2356;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Header Right Section */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Brand Title */
+.brand-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #00E5FF;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+
+/* Logo (CyborgTech) */
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    color: #00E5FF;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+}
+
+/* Icons (Category, Cart, Profile) */
+.icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.icon {
+    font-size: 1.5em; /* For emoji (Category) */
+    width: 24px; /* For images (Cart, Profile) */
+    height: 24px;
+    color: #00E5FF; /* For emoji */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icon:hover {
+    color: #66FFFF; /* For emoji */
+    filter: brightness(1.2) drop-shadow(0 0 10px rgba(0, 229, 255, 1)); /* For images */
+    text-shadow: 0 0 10px rgba(0, 229, 255, 1); /* For emoji */
+}
+
+/* Cart Icon */
+.cart-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.back-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #00E5FF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #66FFFF;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 1);
+}
+
+/* Floating Cart Button (for product pages) */
+.floating-cart-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00E5FF;
+    color: #2a2356;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.floating-cart-btn:hover {
+    background: #66FFFF;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 1);
+}
+
+/* Main content for dashboard and product pages */
+main {
+    margin-top: 80px; /* Space for fixed header */
+    padding: 20px;
+    padding-top: 80px; /* Adjust based on header height */
+}
+
+/* Categories section */
+.categories {
+    margin-bottom: 40px;
+}
+
+.categories h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+    color: #e0d9f6; /* Light lavender for contrast with dark background */
+    margin-bottom: 20px;
+}
+
+.categories ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.categories li.category-item {
+    position: relative; /* For dropdown positioning */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    color: #fff; /* White for contrast with new background */
+    background: #c252e1; /* Vibrant pinkish-purple */
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.categories li.category-item:hover {
+    background: #00E5FF;
+    color: #fff;
+}
+
+/* Category dropdown */
+.category-dropdown {
+    display: block; /* Initially block but hidden with opacity */
+    opacity: 0; /* Hidden by default */
+    visibility: hidden; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the category */
+    left: 0;
+    background: rgba(224, 217, 246, 0.9); /* Semi-transparent lavender */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #00E5FF; /* Cyan border */
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); /* Glowing cyan shadow */
+    list-style: none;
+    z-index: 5; /* Ensure dropdown appears above other elements */
+    min-width: 200px; /* Ensure dropdown doesn’t shrink too much */
+    transform: translateY(10px); /* Start slightly below for slide effect */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+}
+
+.category-item:hover .category-dropdown {
+    opacity: 1; /* Fade in */
+    visibility: visible; /* Show on hover */
+    transform: translateY(0); /* Slide up to position */
+}
+
+.category-dropdown li {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    color: #2a2356; /* Dark color for contrast with lavender background */
+    padding: 5px 10px;
+    background: none; /* No background for dropdown items */
+    box-shadow: none; /* No shadow for dropdown items */
+    transition: background 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.category-dropdown li:hover {
+    background: #00E5FF; /* Cyan background on hover */
+    color: #fff; /* White text on hover */
+    border-radius: 3px;
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.8); /* Glowing text effect */
+}
+
+.category-dropdown li a {
+    color: inherit; /* Inherit color from parent li */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Make the entire li clickable */
+}
+
+/* Bestsellers section */
+.bestsellers {
+    margin-bottom: 40px;
+}
+
+.bestsellers h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+    color: #e0d9f6; /* Light lavender for contrast with dark background */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Slider container */
+.slider {
+    position: relative;
+    width: 100%; /* Full width to remove negative space */
+    margin: 0; /* Remove any margins */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Slider content */
+.slider-content {
+    display: flex;
+    flex-direction: row; /* Display products side by side */
+    justify-content: space-between;
+    align-items: stretch; /* Ensure consistent height */
+    height: 350px; /* Increased height for larger window */
+    background: #e0d9f6; /* Light lavender */
+    padding: 15px 0; /* Padding only on top/bottom, none on sides */
+    box-sizing: border-box;
+}
+
+/* Product card */
+.product {
+    flex: 1; /* Distribute space equally among 4 products */
+    max-width: 25%; /* Ensure 4 products fit */
+    margin: 0 5px; /* Small gap between products */
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 180px; /* Increased for larger window */
+    height: auto;
+    margin: 0 auto 10px;
+    border-radius: 5px;
+}
+
+.product h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1em; /* Slightly larger for better visibility */
+    color: #2a2356; /* Dark color for contrast with lavender background */
+    margin-bottom: 5px;
+}
+
+.product p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em; /* Slightly larger for better visibility */
+    color: #4a4276; /* Slightly darker shade for contrast with lavender background */
+    margin-bottom: 5px;
+    flex-grow: 1; /* Ensure description takes available space */
+}
+
+.product .price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em; /* Slightly larger */
+    font-weight: 600;
+    color: #00E5FF; /* Keep cyan for price */
+}
+
+/* Product Link in Best Seller */
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.product-link:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation arrows */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background 0.3s ease;
+}
+
+.nav-arrow:hover {
+    background: rgba(0, 229, 255, 0.8);
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+.review-left-arrow {
+    left: 10px;
+}
+
+.review-right-arrow {
+    right: 10px;
+}
+
+/* Reviews section */
+.reviews {
+    margin-bottom: 40px;
+}
+
+.reviews h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+    color: #e0d9f6; /* Light lavender for contrast with dark background */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.review-slider {
+    position: relative;
+    width: 100%; /* Full width to match bestsellers */
+    margin: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.review-slider-content {
+    display: flex;
+    flex-direction: row; /* Display reviews side by side */
+    justify-content: space-between;
+    align-items: stretch; /* Ensure consistent height */
+    height: 250px; /* Slightly shorter than bestsellers */
+    background: #e0d9f6; /* Match bestsellers background */
+    padding: 15px 0; /* Padding only on top/bottom */
+    box-sizing: border-box;
+}
+
+/* Review card */
+.review {
+    flex: 1;
+    max-width: 32%; /* Ensure 3 reviews fit */
+    margin: 0 5px; /* Small gap between reviews */
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-username {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1em;
+    color: #2a2356;
+}
+
+.review-rating {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    color: #ffcc00; /* Gold for stars */
+}
+
+.review-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    color: #4a4276;
+    flex-grow: 1;
+}
+
+/* Review form */
+.review-form {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #000000;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.review-form h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2em;
+    color: #2a2356;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.review-form .form-group {
+    margin-bottom: 15px;
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #2a2356;
+    border-radius: 5px;
+    background: #fff;
+    color: #2a2356;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.review-form textarea {
+    height: 100px;
+    resize: none;
+}
+
+.review-form input:focus,
+.review-form select:focus,
+.review-form textarea:focus {
+    border-color: #00E5FF;
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+
+.submit-review-btn {
+    width: 100%;
+    padding: 10px;
+    background: #00E5FF;
+    border: none;
+    border-radius: 5px;
+    color: #2a2356;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.submit-review-btn:hover {
+    background: #66FFFF;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+}
+
+/* Keyframes for pulsing glow effect */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 229, 255, 1);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+    }
+}
+
+/* Keyframes for loading spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Product Detail Section (for product pages) */
+.product-detail {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #2a2a2a; /* Dark background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #00E5FF; /* Cyan border */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+}
+
+.product-detail h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+    color: #e0d9f6; /* Light lavender */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product-detail-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.product-detail-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #00E5FF;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); /* Glowing effect */
+}
+
+.product-info {
+    flex: 1;
+    color: #e0d9f6;
+}
+
+.product-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    color: #00E5FF;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+}
+
+.product-description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.product-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.product-features li {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    color: #e0d9f6;
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.product-features li::before {
+    content: '⚡'; /* Futuristic bullet point */
+    position: absolute;
+    left: 0;
+    color: #00E5FF;
+}
+
+.product-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #00E5FF;
+    margin-bottom: 15px;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    padding: 10px;
+    background: #00E5FF;
+    border: none;
+    border-radius: 5px;
+    color: #2a2356;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.add-to-cart-btn:hover {
+    background: #66FFFF;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 1);
+    transform: scale(1.02); /* Slight scale effect on hover */
+    animation: pulse-glow 1s infinite; /* Pulsing glow effect */
+}
+
+/* Checkout Container */
+.checkout-container {
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.user-info-section,
+.cart-billing-section {
+    flex: 1;
+    padding: 20px 30px; /* Adjusted padding: 20px top/bottom, 30px left/right to balance gaps */
+    background: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #00E5FF;
+    backdrop-filter: blur(5px);
+}
+
+.user-info-section h2,
+.cart-billing-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+    color: #e0d9f6;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* User Info Form */
+.form-group {
+    margin-bottom: 20px; /* Increased for better spacing */
+    max-width: 100%; /* Standard width for textboxes */
+    /* margin-left: auto; /* Center the form fields */
+    /* margin-right: auto; */ 
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.form-group label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    color: #e0d9f6;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #00E5FF;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0d9f6;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    outline: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #B0BEC5; /* Improved contrast */
+}
+
+.form-group textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #66FFFF;
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+
+.delivery-charge {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #e0d9f6;
+    margin-top: 10px;
+    max-width: 320px; /* Match the form fields width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.delivery-charge span:last-child {
+    color: #00E5FF;
+    font-weight: 600;
+}
+
+/* Cart Billing */
+.cart-items p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #ccc;
+    text-align: center;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #e0d9f6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.cart-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.cart-item-details {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-item-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #2a2356;
+}
+
+.cart-item-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #00E5FF;
+    font-weight: 600;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-btn {
+    background: #00E5FF;
+    border: none;
+    border-radius: 3px;
+    color: #2a2356;
+    font-size: 1em;
+    padding: 2px 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background: #66FFFF;
+}
+
+.quantity {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #2a2356;
+}
+
+.delete-btn {
+    background: #ff4444;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 1em;
+    padding: 2px 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #ff6666;
+}
+
+.cart-summary {
+    background: #e0d9f6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #4a4276;
+}
+
+.summary-row span:first-child {
+    font-family: 'Orbitron', sans-serif; /* Bolder for Subtotal, Delivery Charge, etc. */
+    font-weight: 600;
+}
+
+.summary-row span:last-child,
+.total-row span:last-child {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* Bolder for monetary values */
+    color: #00E5FF; /* Consistent with other monetary values */
+}
+
+.discount-row {
+    color: #ff4444;
+}
+
+.total-row {
+    font-family: 'Orbitron', sans-serif; /* Bolder for Total */
+    font-weight: 600;
+    color: #2a2356;
+    border-top: 1px solid #2a2356;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.tax-note {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8em;
+    color: #B0BEC5;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.discount-code {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.discount-code input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #2a2356;
+    border-radius: 5px;
+    background: #fff;
+    color: #2a2356;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    outline: none;
+}
+
+.discount-code input:focus {
+    border-color: #00E5FF;
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+
+.discount-code button {
+    padding: 10px;
+    background: #00E5FF;
+    border: none;
+    border-radius: 5px;
+    color: #2a2356;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.discount-code button:hover {
+    background: #66FFFF;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+}
+
+.discount-code button:disabled {
+    background: #666;
+    cursor: not-allowed;
+}
+
+.discount-status {
+    position: absolute;
+    top: -25px;
+    right: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    color: #00FF00;
+}
+
+.discount-status.error {
+    color: #FF4444;
+}
+
+#confirm-order-btn {
+    width: 100%;
+    padding: 12px; /* Larger for touch */
+    background: #00E5FF;
+    border: none;
+    border-radius: 5px;
+    color: #2a2356;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+#confirm-order-btn:hover {
+    background: #66FFFF;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 1);
+    transform: scale(1.02);
+    animation: pulse-glow 1s infinite;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #00E5FF;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.modal-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em;
+    color: #e0d9f6;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #e0d9f6;
+    margin-bottom: 10px;
+}
+
+.modal-content p span {
+    color: #00E5FF;
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#modal-ok-btn,
+#modal-details-btn {
+    padding: 10px 20px;
+    background: #00E5FF;
+    border: none;
+    border-radius: 5px;
+    color: #2a2356;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#modal-ok-btn:hover,
+#modal-details-btn:hover {
+    background: #66FFFF;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+}
+
+/* Success Checkmark Animation */
+.success-checkmark {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.success-checkmark::before,
+.success-checkmark::after {
+    content: '';
+    position: absolute;
+    background: #00E5FF;
+    border-radius: 2px;
+}
+
+.success-checkmark::before {
+    width: 25px;
+    height: 5px;
+    bottom: 10px;
+    left: 5px;
+    transform: rotate(45deg);
+    animation: checkmark-part1 0.5s ease forwards;
+}
+
+.success-checkmark::after {
+    width: 35px;
+    height: 5px;
+    bottom: 10px;
+    left: 15px;
+    transform: rotate(-45deg);
+    animation: checkmark-part2 0.5s ease forwards 0.2s;
+}
+
+@keyframes checkmark-part1 {
+    0% { width: 0; }
+    100% { width: 25px; }
+}
+
+@keyframes checkmark-part2 {
+    0% { width: 0; }
+    100% { width: 35px; }
+}
+.footer-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #00e5ff;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    padding: 10px;
+    z-index: 1;
+}
+
+.video-footer p {
+    margin: 0;
+    font-size: 1em;
+    text-shadow: 0 0 7px #00e5ff, 0 0 16px #00e5ff;
+}
+
+.developer-info h3 {
+    margin: 10px 0 5px;
+    font-size: 1.1em;
+    color: #00e5ff;
+    text-shadow: 0 0 5px #00e5ff;
+}
+
+.developer-info p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #b3eaff;
+}
+
+.social-icons {
+    margin-top: 5px;
+}
+
+.social-icons a {
+    margin: 0 8px;
+    color: #00e5ff;
+    font-size: 1.2em;
+    text-shadow: 0 0 5px #00e5ff;
+    transition: transform 0.2s;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    color: #fff;
+}
