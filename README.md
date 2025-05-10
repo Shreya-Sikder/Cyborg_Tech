@@ -8,7 +8,7 @@ Welcome to **CyborgTech**, your futuristic destination for buying cutting-edge c
 
 
 ---
-## 🌐 [Live Demo](https://snehasikder.github.io/CyborgTech/) — You can clone and run locally for now.
+## 🌐 [Live Demo](https://shreya-sikder.github.io/Cybortech/).
 
 ---
 
