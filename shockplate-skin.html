@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./image/logo-favicon.png">
+    <title>SwiftStep Legs - CyborgTech</title>
+    <link href="style.css" rel="stylesheet">
+    <!-- Google Font: Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+</head>
+<body class="product-page">
+    <header class="new-header fixed-header">
+        <a href="dashboard.html" class="back-link">⬅ Back to Dashboard</a>
+        <div class="header-right">
+            <div class="brand-title">CYBORGTECH</div>
+        </div>
+    </header>
+    <main>
+        <section class="product-detail">
+            <h2>Product Details</h2>
+            <div class="product-detail-content">
+                <img src="./image/shockplate.jpg" alt="ShockPlate Skin" class="product-detail-image">
+                <div class="product-info">
+                    <h3 class="product-title">ShockPlate Skin</h3>
+                    <p class="product-description">Electro-armor defense layer that provides protection through advanced shock resistance.</p>
+                    <ul class="product-features">
+                        <li>Electric pulse defense</li>
+                        <li>Impact resistance</li>
+                        <li>Flexible fit</li>
+                    </ul>
+                    <p class="product-price">$2,999</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="floating-cart-btn" onclick="window.location.href='cart.html'">
+        🛒
+    </div>
+    <script>
+        // Add to Cart Button Logic
+        const addToCartBtn = document.querySelector('.add-to-cart-btn');
+        addToCartBtn.addEventListener('click', () => {
+            // Get product details
+            const productName = document.querySelector('.product-title').textContent;
+            const productPrice = document.querySelector('.product-price').textContent;
+    
+            // Load cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            // Check if product already exists in cart
+            const existingItem = cart.find(item => item.name === productName);
+    
+            if (existingItem) {
+                // If item exists, increment quantity
+                existingItem.quantity += 1;
+            } else {
+                // If item doesn't exist, add new item with quantity 1
+                cart.push({
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
+            }
+    
+            // Save updated cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+    
+            // Create a popup box for success message
+            const popupBox = document.createElement('div');
+            popupBox.className = 'popup-box';
+            popupBox.textContent = 'Item added successfully! ✅';
+            document.body.appendChild(popupBox);
+    
+            // Style the popup box
+            popupBox.style.position = 'fixed';
+            popupBox.style.bottom = '50px';
+            popupBox.style.right = '20px';
+            popupBox.style.backgroundColor = '#4CAF50';
+            popupBox.style.color = '#fff';
+            popupBox.style.padding = '10px 20px';
+            popupBox.style.borderRadius = '5px';
+            popupBox.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            popupBox.style.zIndex = '1000';
+            popupBox.style.display = 'flex'; // Added to support align-items
+            popupBox.style.alignItems = 'center'; // Corrected from alignContent
+            popupBox.style.justifyContent = 'center';
+    
+            // Remove popup after 3 seconds
+            setTimeout(() => {
+                popupBox.remove();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
