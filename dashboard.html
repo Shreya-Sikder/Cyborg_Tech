@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./image/logo-favicon.png">
+    <title>CyborgTech - Dashboard</title>
+    <link href="style.css" rel="stylesheet">
+    <!-- Google Font: Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+    .submit-review-btn{
+        color:black
+    }
+</style>
+</head>
+<body class="dashboard-page">
+    <header class="new-header">
+        <div class="logo">CyborgTech</div>
+        <div class="icons">
+            <img src="./image/cart-icon.png" alt="Cart" class="icon cart-icon" title="Cart" onclick="window.location.href='cart.html'">
+            <img src="./image/profile-icon.png" alt="Profile" class="icon profile-icon" title="Profile">
+        </div>
+    </header>
+    <main style="padding-top: 20px;">
+        <section class="categories">
+            <h2>Categories</h2>
+            <ul>
+                <li class="category-item">
+                    Cyber Limbs & Mobility
+                    <ul class="category-dropdown">
+                        <li><a href="cyber-arm.html" class="product-link">Cyber Arm Pro</a></li>
+                        <li><a href="titangrip-arms.html" class="product-link">TitanGrip Arms</a></li>
+                        <li><a href="swiftstep-legs.html" class="product-link">SwiftStep Legs</a></li>
+                        <li><a href="stealthhand-prosthetics.html" class="product-link">StealthHand Prosthetics</a></li>
+                        <li><a href="speedboost-legs.html" class="product-link">SpeedBoost Legs</a></li>
+                    </ul>
+                </li>
+                <li class="category-item">
+                    Neural & Sensory Upgrades
+                    <ul class="category-dropdown">
+                        <li><a href="PhantomEyesX.html" class="product-link">PhantomEyes X</a></li>
+                        <li><a href="synapseflow-chips.html" class="product-link">SynapseFlow Chips</a></li>
+                        <li><a href="sonicear-pro.html" class="product-link">SonicEar Pro</a></li>
+                    </ul>
+                </li>
+                <li class="category-item">
+                    Performance Enhancers
+                    <ul class="category-dropdown">
+                        <li><a href="adrenalift-muscles.html" class="product-link">AdrenaLift Muscles</a></li>
+                        <li><a href="nanoflex-tendons.html" class="product-link">NanoFlex Tendons</a></li>
+                        <li><a href="shockplate-skin.html" class="product-link">ShockPlate Skin</a></li>
+                    </ul>
+                </li>
+                <li class="category-item">
+                    Aesthetic & Custom Mods
+                    <ul class="category-dropdown">
+                        <li><a href="chromeskin-wraps.html" class="product-link">ChromeSkin Wraps</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section class="bestsellers">
+            <h2>Bestsellers</h2>
+            <div class="slider">
+                <button class="nav-arrow left-arrow">◄</button>
+                <div class="slider-content">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+                <button class="nav-arrow right-arrow">►</button>
+            </div>
+        </section>
+        <section class="reviews">
+            <h2 class="a">User Reviews</h2>
+            <div class="review-slider">
+                <button class="nav-arrow review-left-arrow">◄</button>
+                <div class="review-slider-content">
+                    <!-- Reviews will be dynamically inserted here -->
+                </div>
+                <button class="nav-arrow review-right-arrow">►</button>
+            </div>
+            <div class="review-form">
+                <h3 style="color:aquamarine">Add Your Review</h3>
+                <div class="form-group">
+                    <input type="text" id="review-username" placeholder="Your Username" required>
+                </div>
+                <div class="form-group">
+                    <select id="review-rating" required>
+                        <option value=""  disabled selected style="color:black">Select Rating (1-5)</option>
+                        <option value="1" class="a">1 Star</option>
+                        <option value="2" class="a">2 Stars</option>
+                        <option value="3" class="a">3 Stars</option>
+                        <option value="4" class="a">4 Stars</option>
+                        <option value="5" class="a">5 Stars</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="review-text" placeholder="Share your experience..." required style="color:white"></textarea>
+                </div>
+                <button class="submit-review-btn">Submit Review</button>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Bestsellers Logic
+        const products = [
+            { name: "Cyber Arm Pro", description: "Advanced cybernetic arm with enhanced strength.", price: "$2,999", image: "cyber-arm.jpeg", url: "cyber-arm.html" },
+            { name: "PhantomEyes X", description: "Augmented reality vision upgrade.", price: "$1,499", image: "neural-vision.jpeg", url: "PhantomEyesX.html" },
+            { name: "SpeedBoost Legs", description: "High-performance mobility enhancement.", price: "$3,499", image: "speed-boostleg.jpg", url: "speedboost-legs.html" },
+            { name: "SynapseFlow Chips", description: "Neural implants for faster thinking.", price: "$999", image: "snap-chip.png", url: "synapseflow-chips.html" },
+            { name: "ShockPlate Skin", description: "Electro-armor defense layer.", price: "$2,999", image: "shockplate.jpg", url: "shockplate-skin.html" },
+        ];
+
+        let startIndex = 0;
+        const productsPerPage = 4; // Show 4 products at a time
+        const sliderContent = document.querySelector('.slider-content');
+        const leftArrow = document.querySelector('.left-arrow');
+        const rightArrow = document.querySelector('.right-arrow');
+
+        // Function to display 4 products at a time
+        function displayProducts(start) {
+            sliderContent.innerHTML = ''; // Clear current content
+            for (let i = 0; i < productsPerPage; i++) {
+                const index = (start + i) % products.length; // Loop around the array
+                const product = products[index];
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <a href="${product.url}" class="product-link">
+                        <img src="./image/${product.image}" alt="${product.name}" class="product-image">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p class="price">${product.price}</p>
+                    </a>
+                `;
+                sliderContent.appendChild(productDiv);
+            }
+        }
+
+        // Initial display
+        displayProducts(startIndex);
+
+        // Auto-scroll functionality (shift by 4 products)
+        function autoScroll() {
+            startIndex = (startIndex + productsPerPage) % products.length;
+            displayProducts(startIndex);
+        }
+
+        // Start auto-scroll every 3 seconds
+        let autoScrollInterval = setInterval(autoScroll, 3000);
+
+        // Navigation arrows
+        leftArrow.addEventListener('click', () => {
+            clearInterval(autoScrollInterval); // Pause auto-scroll on manual navigation
+            startIndex = (startIndex - productsPerPage + products.length) % products.length;
+            displayProducts(startIndex);
+            autoScrollInterval = setInterval(autoScroll, 3000); // Restart auto-scroll
+        });
+
+        rightArrow.addEventListener('click', () => {
+            clearInterval(autoScrollInterval); // Pause auto-scroll on manual navigation
+            startIndex = (startIndex + productsPerPage) % products.length;
+            displayProducts(startIndex);
+            autoScrollInterval = setInterval(autoScroll, 3000); // Restart auto-scroll
+        });
+
+        // Reviews Logic
+        // Load reviews from localStorage or initialize with sample reviews
+        let reviews = JSON.parse(localStorage.getItem('reviews')) || [
+            { username: "TechFan123", rating: 5, text: "The Cyber Arm Pro is incredible! It’s boosted my productivity significantly." },
+            { username: "CyberLover", rating: 4, text: "Neural Vision X is great for AR, but the battery life could be better." },
+            { username: "SpeedyUser", rating: 3, text: "SpeedBoost Legs are decent, but I expected more customization options." },
+            { username: "GlowMaster", rating: 5, text: "SynapseFlow Chips are a game-changer! I feel like I’m thinking at light speed." },
+            { username: "ArmorFan", rating: 4, text: "ShockPlate Skin is fantastic for defense, though it’s a bit heavy during long use." },
+            { username: "VisionPro", rating: 2, text: "Neural Vision X kept glitching during my last VR session—needs a software update." },
+            { username: "RunnerX", rating: 5, text: "SpeedBoost Legs made me feel unstoppable! Best purchase ever." },
+            { username: "MindBender", rating: 3, text: "SynapseFlow Chips are okay, but the installation process was a hassle." },
+            { username: "TechTinkerer", rating: 4, text: "Cyber Arm Pro is solid, but I wish it had more color options for customization." }
+        ];
+
+        let reviewStartIndex = 0;
+        const reviewsPerPage = 3; // Show 3 reviews at a time
+        const reviewSliderContent = document.querySelector('.review-slider-content');
+        const reviewLeftArrow = document.querySelector('.review-left-arrow');
+        const reviewRightArrow = document.querySelector('.review-right-arrow');
+        const reviewForm = document.querySelector('.review-form');
+        const usernameInput = document.getElementById('review-username');
+        const ratingInput = document.getElementById('review-rating');
+        const reviewTextInput = document.getElementById('review-text');
+        const submitReviewBtn = document.querySelector('.submit-review-btn');
+
+        // Function to display 3 reviews at a time
+        function displayReviews(start) {
+            reviewSliderContent.innerHTML = ''; // Clear current content
+            for (let i = 0; i < reviewsPerPage; i++) {
+                const index = (start + i) % reviews.length; // Loop around the array
+                const review = reviews[index];
+                const reviewDiv = document.createElement('div');
+                reviewDiv.className = 'review';
+                // Generate star rating
+                const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+                reviewDiv.innerHTML = `
+                    <div class="review-header">
+                        <span class="review-username">${review.username}</span>
+                        <span class="review-rating">${stars} (${review.rating}/5)</span>
+                    </div>
+                    <p class="review-text">${review.text}</p>
+                `;
+                reviewSliderContent.appendChild(reviewDiv);
+            }
+        }
+
+        // Initial display of reviews
+        displayReviews(reviewStartIndex);
+
+        // Auto-scroll functionality for reviews (shift by 3 reviews)
+        function autoScrollReviews() {
+            reviewStartIndex = (reviewStartIndex + reviewsPerPage) % reviews.length;
+            displayReviews(reviewStartIndex);
+        }
+
+        // Start auto-scroll for reviews every 3 seconds
+        let reviewAutoScrollInterval = setInterval(autoScrollReviews, 3000);
+
+        // Navigation arrows for reviews
+        reviewLeftArrow.addEventListener('click', () => {
+            clearInterval(reviewAutoScrollInterval); // Pause auto-scroll on manual navigation
+            reviewStartIndex = (reviewStartIndex - reviewsPerPage + reviews.length) % reviews.length;
+            displayReviews(reviewStartIndex);
+            reviewAutoScrollInterval = setInterval(autoScrollReviews, 3000); // Restart auto-scroll
+        });
+
+        reviewRightArrow.addEventListener('click', () => {
+            clearInterval(reviewAutoScrollInterval); // Pause auto-scroll on manual navigation
+            reviewStartIndex = (reviewStartIndex + reviewsPerPage) % reviews.length;
+            displayReviews(reviewStartIndex);
+            reviewAutoScrollInterval = setInterval(autoScrollReviews, 3000); // Restart auto-scroll
+        });
+
+        // Handle form submission
+        submitReviewBtn.addEventListener('click', () => {
+            const username = usernameInput.value.trim();
+            const rating = parseInt(ratingInput.value);
+            const text = reviewTextInput.value.trim();
+
+            // Validate inputs
+            if (!username || !rating || !text) {
+                alert('Please fill out all fields before submitting your review.');
+                return;
+            }
+
+            // Add new review
+            const newReview = { username, rating, text };
+            reviews.push(newReview);
+
+            // Save to localStorage
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+
+            // Clear form
+            usernameInput.value = '';
+            ratingInput.value = '';
+            reviewTextInput.value = '';
+
+            // Update display
+            displayReviews(reviewStartIndex);
+        });
+    </script>
+</body>
+</html>
