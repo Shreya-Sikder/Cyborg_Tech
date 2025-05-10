@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./image/logo-favicon.png">
+    <title>CyborgTech - Login</title>
+    <link href="style.css" rel="stylesheet">
+    <!-- Google Font: Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+    <style>
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: blur(5px) brightness(0.5);
+        }
+        .popup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        .popup {
+            background: #2a2a2a; /* Dark background to match dashboard */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            width: 80%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+        .popup-content {
+            padding: 20px;
+            flex: 1;
+            color: #e0d9f6; /* Light lavender for text */
+        }
+        .login-btn {
+            background-color: #00e5ff;
+            color: #2a2a2a; /* Dark color for contrast */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .login-btn:hover {
+            background-color: #66FFFF;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+            transform: scale(1.02);
+        }
+        .popup-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #2a2a2a; /* Match dashboard background */
+        }
+        .popup-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #00e5ff;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0d9f6;
+            font-family: 'Poppins', sans-serif;
+        }
+        .form-group input::placeholder {
+            color: #B0BEC5;
+        }
+        .toggle-link {
+            margin-top: 10px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .toggle-link a {
+            color: #00e5ff;
+            text-decoration: none;
+        }
+        .toggle-link a:hover {
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+        }
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00e5ff;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+            margin-bottom: 10px;
+        }
+        p {
+            font-family: 'Poppins', sans-serif;
+            color: #e0d9f6;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="login-page">
+    <video autoplay muted loop class="video-background">
+        <source src="./image/intro.mp4.mp4" type="video/mp4">
+    </video>
+    <div class="popup-container">
+        <div class="popup">
+            <div class="popup-content">
+                <h2>Member Login</h2>
+                <p>CyborgTech - Upgrade Your Humanity</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <input type="email" id="login-email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="login-password" placeholder="Password" required>
+                    </div>
+                    <div class="form-options" style="text-align: left;">
+                        <label><input type="checkbox" id="remember-me"> Remember me</label>
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+                <p class="toggle-link">Don't have an account? <a href="signup.html">Register</a></p>
+            </div>
+            <div class="popup-image">
+                <img src="./image/cuterobo.jpg" alt="CyborgTech Graphic">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
