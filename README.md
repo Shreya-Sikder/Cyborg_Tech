@@ -98,5 +98,5 @@ This diagram illustrates the structure and interactions of the app components:
 ---
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the [MIT License](https://github.com/Shreya-Sikder/CyborgTech-/blob/main/LICENSE).
 
