@@ -4,7 +4,7 @@ Welcome to **CyborgTech**, your futuristic destination for buying cutting-edge c
 ---
 
 
-
+This project was collaboratively developed by [Shreya Sikder](https://github.com/Shreya-Sikder) and [Sneha Sikder](https://github.com/snehasikder).
 
 
 ---
