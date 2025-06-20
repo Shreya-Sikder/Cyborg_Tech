@@ -25,7 +25,7 @@ This project was collaboratively developed by [Shreya Sikder](https://github.com
 
 ---
 
-## 🗂️ Folder Structure
+<!--## 🗂️ Folder Structure
 CyborgTech/
 ├── images/                    # All media assets (product images, icons)
 ├── css/
@@ -50,7 +50,7 @@ CyborgTech/
 ├── synapseflow-chip.html
 ├── swift-step-legs.html
 ├── LICENSE
-└── README.md
+└── README.md-->
 
 
 ---
