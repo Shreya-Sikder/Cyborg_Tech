@@ -22,10 +22,10 @@ This project was collaboratively developed by [Shreya Sikder](https://github.com
 - 💬 **User Reviews**: View and submit reviews for items
 - ⚡ **Neon Flickering Logo** with entry animations on the index page
 - 📦 **Product Pages**: Individual pages for items like `cyber-arm`, `phantom-eyes`, `adrenalift-muscles`, etc.
-
+<!--
 ---
 
-<!--## 🗂️ Folder Structure
+## 🗂️ Folder Structure
 CyborgTech/
 ├── images/                    # All media assets (product images, icons)
 ├── css/
