@@ -1096,15 +1096,3 @@ main {
     margin-top: 5px;
 }
 
-.social-icons a {
-    margin: 0 8px;
-    color: #00e5ff;
-    font-size: 1.2em;
-    text-shadow: 0 0 5px #00e5ff;
-    transition: transform 0.2s;
-}
-
-.social-icons a:hover {
-    transform: scale(1.2);
-    color: #fff;
-}
